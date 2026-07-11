@@ -1,0 +1,231 @@
+/* ============================================
+   ML Classification Pipeline - Main Styles
+   ============================================ */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Global Styles */
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ============================================
+   HEADERS
+   ============================================ */
+.main-header {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #1f77b4;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.sub-header {
+    font-size: 1.3rem;
+    color: #666;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h1, h2, h3 {
+    font-weight: 600 !important;
+}
+
+/* ============================================
+   CARDS
+   ============================================ */
+.metric-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 25px;
+    border-radius: 15px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.metric-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+}
+
+.success-card {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    padding: 25px;
+    border-radius: 15px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(17, 153, 142, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.success-card:hover {
+    transform: translateY(-5px);
+}
+
+/* ============================================
+   BUTTONS - Dashboard Only (not login)
+   ============================================ */
+section[data-testid="stSidebar"] .stButton > button {
+    width: 100% !important;
+}
+
+/* ============================================
+   SIDEBAR
+   ============================================ */
+section[data-testid="stSidebar"] {
+    /* Background handled by app.py sidebar CSS */
+    border-right: 1px solid rgba(255,255,255,0.1);
+}
+
+/* ============================================
+   METRICS
+   ============================================ */
+[data-testid="stMetricValue"] {
+    font-size: 2rem !important;
+    font-weight: 700 !important;
+}
+
+[data-testid="stMetricLabel"] {
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+}
+
+[data-testid="stMetricDelta"] {
+    font-weight: 600 !important;
+}
+
+/* ============================================
+   DATAFRAME / TABLES
+   ============================================ */
+[data-testid="stDataFrame"] {
+    border-radius: 10px !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+    overflow: hidden !important;
+}
+
+/* ============================================
+   TABS
+   ============================================ */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 10px;
+    background: transparent;
+    padding: 10px 0;
+}
+.stApp {
+    background: #F2F3F4 !important;  /* Alice Blue */
+}
+
+.stTabs [data-baseweb="tab"] {
+    border-radius: 10px !important;
+    padding: 10px 20px !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+    border: 2px solid transparent !important;
+}
+
+.stTabs [data-baseweb="tab"]:hover {
+    background: rgba(102, 126, 234, 0.1);
+    border-color: #0b1b77;
+}
+
+.stTabs [aria-selected="true"] {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    color: white !important;
+    border-color: transparent !important;
+}
+
+/* ============================================
+   ALERTS / MESSAGES
+   ============================================ */
+.stAlert {
+    border-radius: 12px !important;
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.stSuccess {
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%) !important;
+}
+
+.stError {
+    background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%) !important;
+}
+
+.stInfo {
+    background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%) !important;
+}
+
+/* ============================================
+   PROGRESS BAR
+   ============================================ */
+.stProgress > div > div > div {
+    background: linear-gradient(90deg, #667eea, #764ba2) !important;
+    border-radius: 10px !important;
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #667eea, #764ba2);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #764ba2, #667eea);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 768px) {
+    .main-header {
+        font-size: 2rem;
+    }
+    
+    .sub-header {
+        font-size: 1rem;
+    }
+    
+    .metric-card {
+        padding: 15px;
+        margin: 5px 0;
+    }
+    
+    [data-testid="stMetricValue"] {
+        font-size: 1.5rem !important;
+    }
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.footer a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
