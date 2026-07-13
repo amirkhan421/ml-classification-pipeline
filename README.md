@@ -1,16 +1,4 @@
----
-title: ML Classification Pipeline
-emoji: 🤖
-colorFrom: blue
-colorTo: purple
-sdk: streamlit
-sdk_version: "1.28.0"
-app_file: app.py
-pinned: false
----
 
-# Machine Learning Classification Pipeline
-...
 
 # Machine Learning Classification Pipeline
 **Author:** Amir Khan | **GitHub:** github.com/amirkhan421
