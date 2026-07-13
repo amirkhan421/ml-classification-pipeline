@@ -9,6 +9,8 @@ st.set_page_config(
     page_icon="🤖",
     layout="wide",
     initial_sidebar_state="expanded"
+import matplotlib
+matplotlib.use("Agg")
 )
 
 
@@ -167,9 +169,9 @@ div[class*="st-key-login_card"] {
             
             col1, col2 = st.columns([1, 1], gap="small")
             with col1:
-                login_btn = st.form_submit_button("🔑 Sign In", use_container_width=True, type="primary")
+                login_btn = st.form_submit_button("🔑 Sign In", width="stretch", type="primary")
             with col2:
-                guest_btn = st.form_submit_button("👤 Guest", use_container_width=True)
+                guest_btn = st.form_submit_button("👤 Guest", width="stretch")
 
             if login_btn:
                 if username == "admin" and password == "admin123":
@@ -382,7 +384,7 @@ section[data-testid="stSidebar"] .stSlider [role="slider"] {
     
     st.markdown("---")
     
-    train_button = st.button("🚀 Train Models", type="primary", use_container_width=True)
+    train_button = st.button("🚀 Train Models", type="primary", width="stretch")
     
     st.markdown("---")
     
@@ -405,7 +407,7 @@ section[data-testid="stSidebar"] .stSlider [role="slider"] {
     </div>
     """, unsafe_allow_html=True)
     
-    if st.button("🚪 Logout", use_container_width=True):
+    if st.button("🚪 Logout", width="stretch"):
         st.session_state.logged_in = False
         st.rerun()
 
@@ -466,13 +468,13 @@ with tab1:
         
         # 📋 Dataset Preview - FULL WIDTH
         st.subheader("📋 Dataset Preview")
-        st.dataframe(df.head(10), use_container_width=True)
+        st.dataframe(df.head(10), width="stretch")
         
         st.markdown("---")
         
         # 📊 Statistical Summary - FULL WIDTH
         st.subheader("📊 Statistical Summary")
-        st.dataframe(df.describe(), use_container_width=True)
+        st.dataframe(df.describe(), width="stretch")
         
         st.markdown("---")
         
@@ -494,7 +496,7 @@ with tab1:
             'Count': df['species'].value_counts().values,
             'Percentage': (df['species'].value_counts(normalize=True) * 100).values
         })
-        st.dataframe(balance_df, use_container_width=True)
+        st.dataframe(balance_df, width="stretch")
 
 # ============================================
 # TAB 2: PREPROCESSING
@@ -532,7 +534,7 @@ with tab2:
             
             with col1:
                 st.write("**Before Preprocessing (with NaN)**")
-                st.dataframe(X_masked.head(), use_container_width=True)
+                st.dataframe(X_masked.head(), width="stretch")
                 st.write(f"Missing values: {X_masked.isnull().sum().sum()}")
             
             with col2:
@@ -543,7 +545,7 @@ with tab2:
                 X_processed = pd.DataFrame(X_scaled, columns=X.columns)
                 
                 st.write("**After Preprocessing (Clean & Scaled)**")
-                st.dataframe(X_processed.head(), use_container_width=True)
+                st.dataframe(X_processed.head(), width="stretch")
                 st.write(f"Missing values: 0 ✅")
 
 # ============================================
@@ -674,7 +676,7 @@ with tab3:
             {'Model': name, 'Accuracy': f"{info['accuracy']:.4f} ({info['accuracy']*100:.2f}%)"}
             for name, info in results.items()
         ])
-        st.dataframe(results_df, use_container_width=True, hide_index=True)
+        st.dataframe(results_df, width="stretch", hide_index=True)
     else:
         st.info("👈 Click 'Train Models' in sidebar to start training")
 
@@ -753,7 +755,7 @@ with tab4:
         
         st.dataframe(
             results_df[['Model', 'Type', 'Accuracy', 'Status']].style.apply(highlight_best, axis=1),
-            use_container_width=True, hide_index=True
+            width="stretch", hide_index=True
         )
         
         st.markdown("---")
@@ -848,7 +850,7 @@ with tab4:
                 })
             
             metrics_df = pd.DataFrame(metrics_data)
-            st.dataframe(metrics_df, use_container_width=True, hide_index=True)
+            st.dataframe(metrics_df, width="stretch", hide_index=True)
             
             # Accuracy summary
             st.markdown("### 📊 Overall Metrics")
@@ -898,7 +900,7 @@ with tab4:
                 'Accuracy': [f'{s:.4f}' for s in cv_scores],
                 'Deviation': [f'{s - cv_scores.mean():+.4f}' for s in cv_scores]
             })
-            st.dataframe(cv_df, use_container_width=True, hide_index=True)
+            st.dataframe(cv_df, width="stretch", hide_index=True)
             
             col_a, col_b = st.columns(2)
             with col_a:
@@ -927,7 +929,7 @@ with tab4:
         col1, col2, col3 = st.columns(3)
         
         with col1:
-            if st.button("💾 Save Best Model", use_container_width=True, type="primary"):
+            if st.button("💾 Save Best Model", width="stretch", type="primary"):
                 os.makedirs('models', exist_ok=True)
                 joblib.dump(best_model['pipeline'], 'models/best_model.pkl')
                 st.success("✅ Model saved to `models/best_model.pkl`")
@@ -944,7 +946,7 @@ with tab4:
                 data=csv_data,
                 file_name="ml_results.csv",
                 mime="text/csv",
-                use_container_width=True
+                width="stretch"
             )
         
         with col3:
@@ -955,7 +957,7 @@ with tab4:
                 data=report_text,
                 file_name="classification_report.txt",
                 mime="text/plain",
-                use_container_width=True
+                width="stretch"
             )
         
         st.markdown("---")
@@ -1038,7 +1040,7 @@ with tab5:
         with col2:
             st.write("")
             st.write("")
-            load_btn = st.button("📂 Load", use_container_width=True)
+            load_btn = st.button("📂 Load", width="stretch")
         
         if load_btn or (model_path and os.path.exists(model_path)):
             if os.path.exists(model_path):
@@ -1093,7 +1095,7 @@ with tab5:
             pl = st.number_input("Petal Length (cm)", 1.0, 7.0, 4.3, 0.1)
             pw = st.number_input("Petal Width (cm)", 0.1, 2.5, 1.3, 0.1)
         
-        if st.button("🔮 Predict", type="primary", use_container_width=True):
+        if st.button("🔮 Predict", type="primary", width="stretch"):
             if model is not None:
                 try:
                     input_data = pd.DataFrame([[sl, sw, pl, pw]], columns=feature_names)
@@ -1149,7 +1151,7 @@ with tab5:
         
         if uploaded_file is not None:
             batch_df = pd.read_csv(uploaded_file)
-            st.dataframe(batch_df.head(), use_container_width=True)
+            st.dataframe(batch_df.head(), width="stretch")
             
             if st.button("🔮 Predict Batch", type="primary"):
                 if model is not None:
@@ -1162,7 +1164,7 @@ with tab5:
                         batch_df['Confidence'] = 'N/A'
                     
                     st.subheader("🎯 Results")
-                    st.dataframe(batch_df, use_container_width=True)
+                    st.dataframe(batch_df, width="stretch")
                     
                     csv_data = batch_df.to_csv(index=False)
                     st.download_button("📥 Download CSV", csv_data, f"predictions_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv", "text/csv")
@@ -1187,7 +1189,7 @@ with tab5:
                 predictions = model.predict(random_data)
                 random_data['Predicted'] = [target_names[p] for p in predictions]
                 st.subheader("🎯 Results")
-                st.dataframe(random_data, use_container_width=True)
+                st.dataframe(random_data, width="stretch")
                 
                 fig, ax = plt.subplots()
                 random_data['Predicted'].value_counts().plot(kind='pie', autopct='%1.1f%%', ax=ax, colors=['#4ECDC4','#FF6B6B','#45B7D1'])
@@ -1200,7 +1202,7 @@ with tab5:
     st.markdown("---")
     st.subheader("📜 Prediction History")
     if st.session_state.prediction_history:
-        st.dataframe(pd.DataFrame(st.session_state.prediction_history), use_container_width=True)
+        st.dataframe(pd.DataFrame(st.session_state.prediction_history), width="stretch")
         if st.button("🗑️ Clear History"):
             st.session_state.prediction_history = []
             st.rerun()
