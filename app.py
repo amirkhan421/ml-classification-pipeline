@@ -1,20 +1,12 @@
-
-
-# ============================================
-# SABSE PEHLE - PAGE CONFIG (Line 1-7)
-# ============================================
 import streamlit as st
+import matplotlib
+matplotlib.use('Agg')
 st.set_page_config(
     page_title="ML Classification Pipeline",
     page_icon="🤖",
     layout="wide",
     initial_sidebar_state="expanded"
-import matplotlib
-matplotlib.use("Agg")
-import matplotlib
-matplotlib.use("Agg")
 )
-
 
 # ============================================
 # IMPORTS
